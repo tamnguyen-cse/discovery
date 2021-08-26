@@ -1,16 +1,29 @@
-buildscript {
-  ext {
-      springBootVersion = '2.3.7.RELEASE'
-  }
-  repositories {
-    maven {
-      url "https://plugins.gradle.org/m2/"
+plugins {
+    id 'java'
+    id 'eclipse'
+    id "com.jfrog.artifactory" version "4.24.16"
+    id 'org.springframework.boot' version '2.5.4'	
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/tamnguyen-cse/discovery")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
-  }
-  dependencies {
-    classpath "io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE"
-    classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-  }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
 }
 
 version = '1.0'
@@ -23,11 +36,6 @@ repositories {
     jcenter()
     mavenCentral()
 }
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
