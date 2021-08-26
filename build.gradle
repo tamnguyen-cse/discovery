@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'eclipse'
-    id "com.jfrog.artifactory" version "4.24.16"
+    id 'maven-publish'
     id 'org.springframework.boot' version '2.5.4'	
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
