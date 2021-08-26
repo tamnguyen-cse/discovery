@@ -1,0 +1,21 @@
+server:
+  port: 8761
+
+info:
+  component: Discovery Server
+
+eureka:
+  # Configure standalone mode
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: backend-discovery
+#  security:
+#    user:
+#      name: admin
+#      password: 123456
