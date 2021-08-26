@@ -25,7 +25,7 @@
 
 on:
   release:
-    types: [created]
+    types: [published]
   # run manually
   workflow_dispatch:
 
