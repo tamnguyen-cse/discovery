@@ -7,14 +7,10 @@ info:
 eureka:
   # Configure standalone mode
   client:
-#    registerWithEureka: false
-#    fetchRegistry: false
+    registerWithEureka: false
+    fetchRegistry: false
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-  instance:
-    prefer-ip-address: true
-    ip-address: ${ECS_INSTANCE_IP_ADDRESS}
-    non-secure-port: ${ECS_TASK_NON_SECURE_INSTANCE_PORT}
 
 spring:
   application:
